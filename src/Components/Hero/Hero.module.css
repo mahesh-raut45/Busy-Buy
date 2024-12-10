@@ -1,0 +1,11 @@
+.prod_grid {
+    grid-gap: 2rem;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 3rem 15rem;
+}
+
+.prod_grid div {
+    margin: 0 auto;
+}

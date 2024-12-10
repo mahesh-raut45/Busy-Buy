@@ -1,5 +1,60 @@
-const Hero = () => {
-  return <h1>Hero</h1>;
+import { useEffect, useState } from "react";
+import { Card } from "../Card/ProdCard";
+import { FilterSidebar } from "../FilterSidebar/FilterSidebar";
+import { Search } from "../Search/Search";
+import styles from "./Hero.module.css";
+import { GridLoader } from "react-spinners";
+
+const Hero = ({ handleCart, fetchProducts, products }) => {
+  const [loading, setLoading] = useState(true);
+  const [searchText, setSearchText] = useState("");
+  const [range, setRange] = useState(99991);
+  const [categories, setCategories] = useState({
+    mens: "off",
+    womens: "off",
+    jewelery: "off",
+    electronics: "off",
+  });
+
+  // fetching products list on rendering.
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  // Filter fetched products based on search
+  const searchedProd = searchText.trim()
+    ? products.filter((prod) =>
+        prod.name.toLowerCase().includes(searchText.toLowerCase())
+      )
+    : products; // Show all products when the search field is empty
+
+  return (
+    <>
+      <Search setSearchText={setSearchText} />
+      <FilterSidebar
+        setRange={setRange}
+        categories={categories}
+        setCategories={setCategories}
+      />
+
+      <div className={styles.prod_grid}>
+        {searchedProd.length > 0
+          ? searchedProd.map((item, index) => (
+              <Card
+                key={index}
+                item={item}
+                img={item.src}
+                name={item.name}
+                price={item.price}
+                handleCart={handleCart}
+                // isInCart={isInCart}
+              />
+            ))
+          : // <p>Product not found</p>
+            loading && <GridLoader color="#776be6" />}
+      </div>
+    </>
+  );
 };
 
 export { Hero };
