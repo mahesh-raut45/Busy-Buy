@@ -1,7 +1,9 @@
 import styles from "./ProdCard.module.css";
+import { useCart } from "../../Context/CartContex";
 
-const Card = ({ item, name, img, price, handleCart }) => {
+const Card = ({ item, name, img, price }) => {
   // console.log("Item: ", item);
+  const { handleCart, handleCartDecrement } = useCart();
   return (
     <>
       <div className={styles.product_container}>
@@ -13,7 +15,7 @@ const Card = ({ item, name, img, price, handleCart }) => {
             <p>{name}</p>
           </div>
           <div className={styles.prod_price}>
-            <p>{price}</p>
+            <p>₹{price}</p>
           </div>
           {item.isInCart ? (
             <div className={styles.btn_pair}>
@@ -23,7 +25,12 @@ const Card = ({ item, name, img, price, handleCart }) => {
               >
                 +
               </button>
-              <button className={styles.add_btn}>-</button>
+              <button
+                className={styles.add_btn}
+                onClick={() => handleCartDecrement(item)}
+              >
+                -
+              </button>
             </div>
           ) : (
             <button className={styles.add_btn} onClick={() => handleCart(item)}>

@@ -1,0 +1,84 @@
+.container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #b197fc;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: cursive;
+}
+
+/* Order Card */
+.orderCard {
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.orderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    color: coral;
+}
+
+.orderDate {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Items Container */
+.itemsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Item Card */
+.itemCard {
+    display: flex;
+    flex-direction: column;
+    background: #ede6ff;
+    border-radius: 8px;
+    padding: 10px;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.itemImage {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.itemDetails {
+    font-size: 0.9rem;
+    color: #34495e;
+}
+
+.itemName {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 5px 0;
+}
+
+.itemPrice,
+.itemQty,
+.itemSubtotal {
+    margin: 2px 0;
+}

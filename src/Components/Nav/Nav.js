@@ -3,9 +3,14 @@ import styles from "./Nav.module.css";
 import homeLogo from "../../Data/Logo/home.png";
 import singIn from "../../Data/Logo/login.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"; // Replace 'faIconName' with the icon you're using
+import {
+  faShoppingCart,
+  faShoppingBag,
+} from "@fortawesome/free-solid-svg-icons"; // Replace 'faIconName' with the icon you're using
+import { useUser } from "../../Context/UserContext";
 
 const Nav = () => {
+  const { currentUser } = useUser();
   return (
     <>
       <nav className={styles.navbar}>
@@ -31,7 +36,12 @@ const Nav = () => {
               </Link>
             </li>
             <li className={styles.nav_item}>
-              <Link to="/cartPage" className={styles.nav_links}>
+              <Link
+                to={`/userCart/${
+                  currentUser ? currentUser.uid : "userId"
+                }/myCart`}
+                className={styles.nav_links}
+              >
                 <span>
                   {/* <img className={styles.icon_styles} src={singIn} /> */}
                   <FontAwesomeIcon
@@ -41,6 +51,24 @@ const Nav = () => {
                   />
                 </span>
                 Cart
+              </Link>
+            </li>
+            <li className={styles.nav_item}>
+              <Link
+                to={`userOrders/${
+                  currentUser ? currentUser.uid : "userId"
+                }/orders`}
+                className={styles.nav_links}
+              >
+                <span>
+                  {/* <img className={styles.icon_styles} src={singIn} /> */}
+                  <FontAwesomeIcon
+                    className={styles.icon_styles}
+                    icon={faShoppingBag}
+                    style={{ color: "#B197FC" }}
+                  />
+                </span>
+                Orders
               </Link>
             </li>
           </ul>

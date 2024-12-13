@@ -4,9 +4,10 @@ import { FilterSidebar } from "../FilterSidebar/FilterSidebar";
 import { Search } from "../Search/Search";
 import styles from "./Hero.module.css";
 import { GridLoader } from "react-spinners";
+import { useUser } from "../../Context/UserContext";
+import { useCart } from "../../Context/CartContex";
 
-const Hero = ({ handleCart, fetchProducts, products }) => {
-  const [loading, setLoading] = useState(true);
+const Hero = () => {
   const [searchText, setSearchText] = useState("");
   const [range, setRange] = useState(99991);
   const [categories, setCategories] = useState({
@@ -15,6 +16,10 @@ const Hero = ({ handleCart, fetchProducts, products }) => {
     jewelery: "off",
     electronics: "off",
   });
+  const { currentUser } = useUser();
+  const { handleCart, fetchProducts, products, loading } = useCart();
+
+  // console.log("Logged-in User: ", currentUser.email);
 
   // fetching products list on rendering.
   useEffect(() => {
@@ -30,6 +35,7 @@ const Hero = ({ handleCart, fetchProducts, products }) => {
 
   return (
     <>
+      <p>{currentUser ? `Welcome ${currentUser.email}!` : "Please Login"}</p>
       <Search setSearchText={setSearchText} />
       <FilterSidebar
         setRange={setRange}

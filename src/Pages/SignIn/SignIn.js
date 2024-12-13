@@ -4,18 +4,26 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { useUser } from "../../Context/UserContext";
 
 const SignIn = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const { setCurrentUser } = useUser();
 
   // sign in with creds and if success, navigate to home page
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, userData.email, userData.password);
+      const userCreds = await signInWithEmailAndPassword(
+        auth,
+        userData.email,
+        userData.password
+      );
 
+      // setting logged-in user in Context
+      setCurrentUser(userCreds.user);
       toast.success("User Logged In successfully!", {
         position: "top-right",
       });

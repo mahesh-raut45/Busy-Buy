@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CartPage.module.css";
+import { useCart } from "../../Context/CartContex";
 
-const CartPage = ({ cartItems, handleClear }) => {
+const CartPage = () => {
   // console.log(cartItems);
   const [grandTotal, setGrandTotal] = useState(0);
+  const { cartItems, handleClear, handlePurchase } = useCart();
 
   // Calculate the grand total whenever the cartItems change
   useEffect(() => {
-    const total = cartItems.reduce(
-      (acc, item) => acc + item.price * item.qty,
-      0
-    );
-    setGrandTotal(total);
+    if (cartItems.length > 0) {
+      const total = cartItems.reduce((acc, item) => {
+        console.log("acc: ", acc, " price: ", item.price, " qty: ", item.qty);
+        return acc + item.price * item.qty;
+      }, 0);
+      setGrandTotal(total);
+    }
   }, [cartItems]);
 
-  //   const handlePurchase = () => {
-  //     alert("Purchase Successful!");
-  //     onPurchase(); // Clear the cart or take any purchase-related actions
-  //   };
+  // const handlePurchase = () => {
+  //   alert(`Purchase Successful! ${grandTotal}`);
+  //   // onPurchase(); // Clear the cart or take any purchase-related actions
+  // };
 
+  // console.log("cartItems in CarPage: ", cartItems);
   return (
     <div className={styles.cartPage}>
-      <h1 className={styles.heading}>Your Cart</h1>
+      <h1 className={styles.heading}>My Cart</h1>
       {cartItems.length > 0 ? (
         <>
           <div className={styles.cartItems}>
             {cartItems.map((item, index) => (
               <div key={index} className={styles.cartItem}>
+                {console.log("Rendering cart item:", item)}
                 <div className={styles.image}>
                   <img src={item.src} alt={item.name} />
                 </div>
@@ -44,11 +50,16 @@ const CartPage = ({ cartItems, handleClear }) => {
           </div>
           <div className={styles.summary}>
             <h2>Grand Total: ₹{grandTotal}</h2>
-            <button className={styles.purchaseButton}>Purchase</button>
+            <button
+              className={styles.purchaseButton}
+              onClick={() => handlePurchase(cartItems, grandTotal)}
+            >
+              Purchase
+            </button>
           </div>
         </>
       ) : (
-        <p>Your cart is empty!</p>
+        <p>Please add products in cart!</p>
       )}
     </div>
   );
