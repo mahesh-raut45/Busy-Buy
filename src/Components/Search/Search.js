@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Search.module.css";
+import { useCart } from "../../Context/CartContex";
 
 const Search = ({ setSearchText }) => {
   // const searchRef = useRef();
   const [value, setValue] = useState("");
 
+  const { getProductsByName } = useCart();
+
+  useEffect(() => {
+    // console.log("Searched text: ", value);
+    setSearchText(value);
+  }, [value]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // setSearchText(searchRef.current.value);
-    setSearchText(value);
+    // getProductsByName(value);
+    // setSearchText(value);
   };
   return (
     <>

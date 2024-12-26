@@ -6,8 +6,10 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  query,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 
 import { useUser } from "./UserContext";
@@ -49,8 +51,17 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  //   adding cart items to firebase
+  // fetch products by name
+  const getProductsByName = async (name) => {
+    const q = query(collection(db, "Products"), where("name", "==", name));
+    const querySnapShot = await getDocs(q);
 
+    querySnapShot.forEach((doc) => {
+      console.log(doc.id, "=>", doc.data());
+    });
+  };
+
+  //   adding cart items to firebase
   const addToCartInFirebase = async (userId, product) => {
     try {
       const userDocRef = doc(db, "carts", userId);
@@ -85,7 +96,6 @@ const CartProvider = ({ children }) => {
       }
 
       //  Fetch updated cart
-
       const updatedSnap = await getDoc(userDocRef);
       return updatedSnap.data().userCart;
     } catch (error) {
@@ -97,7 +107,6 @@ const CartProvider = ({ children }) => {
   // handle cart increment
   const handleCart = async (prod) => {
     // console.log("Cart item: ", prod);
-
     // chek if user is looged-in or not
     if (currentUser) {
       try {
@@ -198,16 +207,6 @@ const CartProvider = ({ children }) => {
     } catch (error) {
       console.log("Error in removing product form cart firebase: ", error);
     }
-
-    // // clearing the item fron cart
-    // const updatedCart = cartItems.filter((item) => item.id !== prod.id);
-
-    // const fetchProdId = products.findIndex((item) => item.id === prod.id);
-    // // console.log("fetch Prod Id: ", fetchProdId);
-    // products[fetchProdId].isInCart = false;
-
-    // setCartItems(updatedCart);
-    // console.log(cartItems);
   };
 
   // handle onPurchase
@@ -230,12 +229,6 @@ const CartProvider = ({ children }) => {
         // if doc doesn't exists, create it
         await setDoc(userDocRef, { userOrder: purchasedItems });
       }
-      // to clear the calrt items.
-      // clearCartItems(currentUser.uid);
-
-      // fetch updated orders
-      // const updatedSnap = await getDoc(userDocRef);
-      // setOrders(updatedSnap.data().userOrder);
     } catch (error) {
       console.error("Error adding purchased products in Firebase:", error);
       throw error;
@@ -264,6 +257,7 @@ const CartProvider = ({ children }) => {
         handleClear,
         fetchProducts,
         handlePurchase,
+        getProductsByName,
 
         products,
         cartItems,

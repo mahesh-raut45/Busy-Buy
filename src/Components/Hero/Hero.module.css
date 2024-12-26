@@ -9,3 +9,8 @@
 .prod_grid div {
     margin: 0 auto;
 }
+
+.loader {
+    position: absolute;
+    right: 50%;
+}

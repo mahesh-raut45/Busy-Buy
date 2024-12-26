@@ -11,15 +11,15 @@ const Hero = () => {
   const [searchText, setSearchText] = useState("");
   const [range, setRange] = useState(99991);
   const [categories, setCategories] = useState({
-    mens: "off",
-    womens: "off",
-    jewelery: "off",
-    electronics: "off",
+    mens: "",
+    womens: "",
+    jewelery: "",
+    electronics: "",
   });
   const { currentUser } = useUser();
   const { handleCart, fetchProducts, products, loading } = useCart();
 
-  // console.log("Logged-in User: ", currentUser.email);
+  console.log("range: ", range);
 
   // fetching products list on rendering.
   useEffect(() => {
@@ -33,6 +33,16 @@ const Hero = () => {
       )
     : products; // Show all products when the search field is empty
 
+  // filter items according to category
+  const category = products.filter(
+    (item) =>
+      categories.mens === item.category ||
+      categories.womens === item.category ||
+      categories.jewelery === item.category ||
+      categories.electronics === item.category
+  );
+  // console.log("category: ", category);
+  console.log(typeof range);
   return (
     <>
       <p>{currentUser ? `Welcome ${currentUser.email}!` : "Please Login"}</p>
@@ -42,22 +52,42 @@ const Hero = () => {
         categories={categories}
         setCategories={setCategories}
       />
-
       <div className={styles.prod_grid}>
-        {searchedProd.length > 0
-          ? searchedProd.map((item, index) => (
-              <Card
-                key={index}
-                item={item}
-                img={item.src}
-                name={item.name}
-                price={item.price}
-                handleCart={handleCart}
-                // isInCart={isInCart}
-              />
-            ))
-          : // <p>Product not found</p>
-            loading && <GridLoader color="#776be6" />}
+        {/* If category selected  */}
+        {category.length > 0
+          ? category.map((item, index) =>
+              // filtering based on price range
+              item.price <= range ? (
+                <Card
+                  key={index}
+                  item={item}
+                  img={item.src}
+                  name={item.name}
+                  price={item.price}
+                  handleCart={handleCart}
+                />
+              ) : null
+            )
+          : // otherwise searched products
+          searchedProd.length > 0
+          ? searchedProd.map((item, index) =>
+              // filtering based on price range
+              item.price <= range ? (
+                <Card
+                  key={index}
+                  item={item}
+                  img={item.src}
+                  name={item.name}
+                  price={item.price}
+                  handleCart={handleCart}
+                />
+              ) : null
+            )
+          : loading && (
+              <div className={styles.loader}>
+                <GridLoader color="#776be6" />
+              </div>
+            )}
       </div>
     </>
   );
