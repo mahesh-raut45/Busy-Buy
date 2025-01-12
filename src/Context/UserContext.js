@@ -11,9 +11,12 @@ function useUser() {
 // for logged in user
 const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [currUserData, setCurrUserData] = useState(null);
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+    <UserContext.Provider
+      value={{ currentUser, setCurrentUser, currUserData, setCurrUserData }}
+    >
       {children}
     </UserContext.Provider>
   );

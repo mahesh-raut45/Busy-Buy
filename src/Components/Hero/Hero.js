@@ -16,7 +16,7 @@ const Hero = () => {
     jewelery: "",
     electronics: "",
   });
-  const { currentUser } = useUser();
+  const { currUserData } = useUser();
   const { handleCart, fetchProducts, products, loading } = useCart();
 
   console.log("range: ", range);
@@ -41,11 +41,12 @@ const Hero = () => {
       categories.jewelery === item.category ||
       categories.electronics === item.category
   );
-  // console.log("category: ", category);
-  console.log(typeof range);
+
   return (
     <>
-      <p>{currentUser ? `Welcome ${currentUser.email}!` : "Please Login"}</p>
+      {/* <h3>
+        {currUserData ? `Welcome ${currUserData.firstName}` : "Please Login"}
+      </h3> */}
       <Search setSearchText={setSearchText} />
       <FilterSidebar
         setRange={setRange}

@@ -31,6 +31,12 @@
     padding: 12px;
 }
 
+.show_Password {
+    position: absolute;
+    top: 70%;
+    right: 10%;
+}
+
 .login_btn {
     background: #7064e5;
     border: none;
