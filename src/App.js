@@ -11,6 +11,7 @@ import CartPage from "./Components/Cart/CartPage";
 import { UserProvider } from "./Context/UserContext";
 import { CartProvider } from "./Context/CartContex";
 import OrdersPage from "./Components/Cart/Orders";
+import { CheckoutPage } from "./Components/Cart/CheckoutPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,6 +31,7 @@ function App() {
           element: <CartPage />,
           // element: <CartPage cartItems={cartItems} handleClear={handleClear} />,
         },
+        { path: "/checkout", element: <CheckoutPage /> },
         { path: "userOrders/:userId/orders", element: <OrdersPage /> },
       ],
     },

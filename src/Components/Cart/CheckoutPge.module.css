@@ -1,0 +1,88 @@
+.checkout_page {
+    /* border: 2px solid gray; */
+    /* height: 100%; */
+    display: flex;
+}
+
+.left_container {
+    border: 2px solid gray;
+    width: 50%;
+}
+
+.container {
+    /* border: 1px solid black; */
+    margin: 5% 9%;
+}
+
+.heading {
+    font-family: cursive;
+    color: #7064e5;
+}
+
+.small_heading {
+    position: relative;
+    left: -37%;
+}
+
+.shipping_form {
+    display: flex;
+    flex-direction: column;
+    gap: 62px;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.inputs {
+    position: relative;
+}
+
+input {
+    height: 40px;
+    width: 239%;
+    /* border-radius: 6px; */
+    /* padding-left: 15px; */
+}
+
+.labels {
+    position: absolute;
+    top: -80%;
+    font-weight: 700;
+}
+
+.country_code {
+    height: 39px;
+    width: 58px;
+    position: absolute;
+    right: 70%;
+    top: 10%;
+    border: none;
+}
+
+.country_name {
+    width: 413px;
+    height: 43px;
+    border-radius: 6px;
+}
+
+.state_city_pincode {
+    display: flex;
+    gap: 10px;
+}
+
+.small_inputs {
+    position: relative;
+}
+
+.small_input {
+    width: 85%;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+
+
+
+.right_container {
+    border: 2px solid gray;
+    width: 50%;
+}
