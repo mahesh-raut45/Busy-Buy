@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CartPage.module.css";
 import { useCart } from "../../Context/CartContex";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   // console.log(cartItems);
@@ -50,12 +51,14 @@ const CartPage = () => {
           </div>
           <div className={styles.summary}>
             <h2>Grand Total: ₹{grandTotal}</h2>
-            <button
-              className={styles.purchaseButton}
-              onClick={() => handlePurchase(cartItems, grandTotal)}
-            >
-              Purchase
-            </button>
+            <Link to={`/checkout`}>
+              <button
+                className={styles.purchaseButton}
+                // onClick={() => handlePurchase(cartItems, grandTotal)}
+              >
+                Checkout
+              </button>
+            </Link>
           </div>
         </>
       ) : (
