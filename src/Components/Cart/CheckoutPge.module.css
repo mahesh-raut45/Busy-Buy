@@ -11,7 +11,7 @@
 
 .container {
     /* border: 1px solid black; */
-    margin: 5% 9%;
+    margin: 5% 20%;
 }
 
 .heading {
@@ -21,7 +21,7 @@
 
 .small_heading {
     position: relative;
-    left: -37%;
+    left: -32%;
 }
 
 .shipping_form {
@@ -36,11 +36,15 @@
     position: relative;
 }
 
-input {
+.inputs input {
     height: 40px;
     width: 239%;
-    /* border-radius: 6px; */
+    border-radius: 6px;
     /* padding-left: 15px; */
+}
+
+input:focus {
+    background-color: aliceblue;
 }
 
 .labels {
@@ -79,10 +83,119 @@ input {
     padding-left: 15px;
 }
 
-
+/* right side */
 
 
 .right_container {
     border: 2px solid gray;
     width: 50%;
+    background: #f6fbff;
+}
+
+.cart_container {
+    /* border: 1px solid black; */
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: #b1a2e0 0px 0px 10px inset;
+}
+
+/* scroll-bar */
+
+/* width */
+.cart_container::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.cart_container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+.cart_container::-webkit-scrollbar-thumb {
+    background: #7064e5;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.cart_container::-webkit-scrollbar-thumb:hover {
+    background: #bbb4fd;
+    cursor: grabbing;
+}
+
+.product_card {
+    /* border: 1px dotted black; */
+    margin: 13px 14px;
+    display: flex;
+    gap: 10px;
+}
+
+.card_left {
+    border: 1px solid lightgray;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_left img {
+    height: 80px;
+}
+
+.card_right p {
+    line-height: 7px;
+}
+
+.disc_code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.disc_code p,
+.color_gray {
+    color: #989292;
+}
+
+
+.apply_btn {
+    background: none;
+    border: none;
+    color: #7064e5;
+    font-weight: 700;
+}
+
+.total {
+    margin: 20px;
+}
+
+
+
+.subTotal_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pay_btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background-color: #2387f3;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+
+}
+
+.pay_btn:hover {
+    background-color: #419cff;
 }

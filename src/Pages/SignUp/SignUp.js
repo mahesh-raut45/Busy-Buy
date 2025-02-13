@@ -15,17 +15,6 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(
-    //   "Name: ",
-    //   nameRef.current.value,
-    //   " ",
-    //   "Email: ",
-    //   emailRef.current.value,
-    //   " ",
-    //   "Password: ",
-    //   passwordRef.current.value
-    // );
-
     try {
       await createUserWithEmailAndPassword(
         auth,

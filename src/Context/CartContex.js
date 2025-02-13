@@ -61,7 +61,7 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  //   adding cart items to firebase
+  //  adding cart items to firebase
   const addToCartInFirebase = async (userId, product) => {
     try {
       const userDocRef = doc(db, "carts", userId);

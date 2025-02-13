@@ -78,118 +78,78 @@ const Nav = () => {
               </li>
             )}
             {/* dipslay only if user logged in */}
-            {
-              currentUser && (
-                <>
-                  <li
-                    className={`${styles.nav_item} ${styles.user} `}
-                    // onClick={() => setUserDetails((userDetails = !userDetails))}
-                  >
-                    <span>
-                      <FontAwesomeIcon
-                        className={styles.icon_styles}
-                        icon={faUser}
-                        style={{ color: "#B197FC" }}
-                      />
-                    </span>
-                    {currUserData.firstName}
+            {currentUser && (
+              <>
+                <li
+                  className={`${styles.nav_item} ${styles.user} `}
+                  // onClick={() => setUserDetails((userDetails = !userDetails))}
+                >
+                  <span>
+                    <FontAwesomeIcon
+                      className={styles.icon_styles}
+                      icon={faUser}
+                      style={{ color: "#B197FC" }}
+                    />
+                  </span>
+                  {currUserData.firstName}
 
-                    {/* {userDetails ? ( */}
-                    <div>
-                      <ul className={styles.cart_and_orders}>
-                        <li>
-                          <Link
-                            to={`/userCart/${
-                              currentUser ? currentUser.uid : "userId"
-                            }/myCart`}
-                            className={styles.nav_links}
-                          >
-                            <span>
-                              {/* <img className={styles.icon_styles} src={singIn} /> */}
-                              <FontAwesomeIcon
-                                className={styles.cart_and_orders_icon}
-                                icon={faShoppingCart}
-                                style={{ color: "#B197FC" }}
-                              />
-                            </span>
-                            Cart
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to={`userOrders/${
-                              currentUser ? currentUser.uid : "userId"
-                            }/orders`}
-                            className={styles.nav_links}
-                          >
-                            <span>
-                              {/* <img className={styles.icon_styles} src={singIn} /> */}
-                              <FontAwesomeIcon
-                                className={styles.cart_and_orders_icon}
-                                icon={faShoppingBag}
-                                style={{ color: "#B197FC" }}
-                              />
-                            </span>
-                            Orders
-                          </Link>
-                        </li>
-                        <li className={styles.nav_links} onClick={logOut}>
+                  {/* {userDetails ? ( */}
+                  <div>
+                    <ul className={styles.cart_and_orders}>
+                      <li>
+                        <Link
+                          to={`/userCart/${
+                            currentUser ? currentUser.uid : "userId"
+                          }/myCart`}
+                          className={styles.nav_links}
+                        >
                           <span>
                             {/* <img className={styles.icon_styles} src={singIn} /> */}
                             <FontAwesomeIcon
                               className={styles.cart_and_orders_icon}
-                              icon={faSignOut}
+                              icon={faShoppingCart}
                               style={{ color: "#B197FC" }}
                             />
                           </span>
-                          Logout
-                        </li>
-                      </ul>
-                    </div>
-                    {/* ) : null} */}
-                  </li>
-                  {/* */}
-                </>
-              )
-              // <>
-              //   <li className={styles.nav_item}>
-              //     <Link
-              //       to={`/userCart/${
-              //         currentUser ? currentUser.uid : "userId"
-              //       }/myCart`}
-              //       className={styles.nav_links}
-              //     >
-              //       <span>
-              //         {/* <img className={styles.icon_styles} src={singIn} /> */}
-              //         <FontAwesomeIcon
-              //           className={styles.icon_styles}
-              //           icon={faShoppingCart}
-              //           style={{ color: "#B197FC" }}
-              //         />
-              //       </span>
-              //       Cart
-              //     </Link>
-              //   </li>
-              //   <li className={styles.nav_item}>
-              //     <Link
-              //       to={`userOrders/${
-              //         currentUser ? currentUser.uid : "userId"
-              //       }/orders`}
-              //       className={styles.nav_links}
-              //     >
-              //       <span>
-              //         {/* <img className={styles.icon_styles} src={singIn} /> */}
-              //         <FontAwesomeIcon
-              //           className={styles.icon_styles}
-              //           icon={faShoppingBag}
-              //           style={{ color: "#B197FC" }}
-              //         />
-              //       </span>
-              //       Orders
-              //     </Link>
-              //   </li>
-              // </>
-            }
+                          Cart
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={`userOrders/${
+                            currentUser ? currentUser.uid : "userId"
+                          }/orders`}
+                          className={styles.nav_links}
+                        >
+                          <span>
+                            {/* <img className={styles.icon_styles} src={singIn} /> */}
+                            <FontAwesomeIcon
+                              className={styles.cart_and_orders_icon}
+                              icon={faShoppingBag}
+                              style={{ color: "#B197FC" }}
+                            />
+                          </span>
+                          Orders
+                        </Link>
+                      </li>
+                      <li className={styles.nav_links} onClick={logOut}>
+                        <span>
+                          {/* <img className={styles.icon_styles} src={singIn} /> */}
+                          <FontAwesomeIcon
+                            className={styles.cart_and_orders_icon}
+                            icon={faSignOut}
+                            style={{ color: "#B197FC" }}
+                          />
+                        </span>
+                        Logout
+                      </li>
+                    </ul>
+                  </div>
+                  {/* ) : null} */}
+                </li>
+                {/* */}
+              </>
+            )}
           </ul>
         </div>
       </nav>

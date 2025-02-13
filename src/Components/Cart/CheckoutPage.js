@@ -1,11 +1,39 @@
 import { useEffect, useState } from "react";
 import styles from "./CheckoutPge.module.css";
 import { countryData } from "../../Data/CountryData/CountryData";
+import { Products } from "../../Data/ProductsData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
+import { useCart } from "../../Context/CartContex";
 
 const CheckoutPage = () => {
-  //   useEffect(() => {
-  //   setCountries(countryData);
-  //   }, []);
+  const [grandTotal, setGrandTotal] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const { cartItems, handlePurchase } = useCart();
+  const shippingCharge = 60;
+
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      // setting discount for more than 2 products
+      if (cartItems.length > 2) {
+        setDiscount(100);
+      }
+      // calculating subtotal
+      const total = cartItems.reduce((acc, item) => {
+        console.log("acc: ", acc, " price: ", item.price, " qty: ", item.qty);
+        return acc + item.price * item.qty;
+      }, 0);
+      setSubTotal(total);
+    }
+  }, [cartItems]);
+
+  useEffect(() => {
+    // Calculate grandTotal when subTotal, discount, or shippingCharge changes
+    setGrandTotal(subTotal + shippingCharge - discount);
+  }, [subTotal, discount]);
 
   return (
     <>
@@ -116,18 +144,73 @@ const CheckoutPage = () => {
         </div>
         <div className={styles.right_container}>
           <div className={styles.container}>
-            <h3>Review your cart</h3>
+            <h4 className={styles.small_heading}>Review your cart</h4>
             <div className={styles.cart_container}>
               {/* show cart items here */}
-              <p>Cart items will be here</p>
+              {cartItems.map((item, index) => (
+                <div className={styles.product_card} key={index}>
+                  <div className={styles.card_left}>
+                    <img src={item.src} alt="prod img" />
+                  </div>
+                  <div className={styles.card_right}>
+                    <p>{item.name}</p>
+                    <p
+                      style={{
+                        fontSize: "small",
+                        color: "lightgrey",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {item.qty}
+                    </p>
+                    <p>₹{item.price * item.qty}</p>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className={styles.disc_code}>
               {/* disc icon */}
-              <p className={styles.gray_text}>Discount Code</p>
-              <button>Apply</button>
+              <div
+                style={{
+                  gap: "15px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faTicket}
+                  color="lightgrey"
+                  width={"20px"}
+                />
+                <p className={styles.gray_text}>Discount Code</p>
+              </div>
+              <button className={styles.apply_btn}>Apply</button>
             </div>
-            <div className={styles.total}>total: 100</div>
-            <button className={styles.pay_btn}>Pay Now</button>
+            <div className={styles.total}>
+              <p className={styles.subTotal_container}>
+                <span className={styles.color_gray}>Subtotal</span>{" "}
+                <span>₹{subTotal}</span>
+              </p>
+              <p className={styles.subTotal_container}>
+                <span className={styles.color_gray}>Shipping</span>{" "}
+                <span>₹{shippingCharge}</span>
+              </p>
+              <p className={styles.subTotal_container}>
+                <span className={styles.color_gray}>Discount</span>{" "}
+                <span>₹{discount}</span>
+              </p>
+              <p className={styles.subTotal_container}>
+                <span>Toatal</span> <span>₹{grandTotal}</span>
+              </p>
+            </div>
+
+            <button
+              className={styles.pay_btn}
+              onClick={() => handlePurchase(cartItems, grandTotal)}
+            >
+              Pay Now
+            </button>
           </div>
         </div>
       </div>

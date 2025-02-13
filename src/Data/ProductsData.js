@@ -1,5 +1,5 @@
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firabase";
+import { db } from "../firebase";
 
 const uploadProductsToFirebase = async () => {
   try {
