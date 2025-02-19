@@ -91,7 +91,7 @@ const FilterSidebar = ({ setRange, setCategories, categories }) => {
               <label htmlFor="electronics">Electronics</label>
             </div>
           </div>
-          <button>Filter</button>
+          <button className={styles.filter_btn}>Apply</button>
         </form>
       </aside>
     </>

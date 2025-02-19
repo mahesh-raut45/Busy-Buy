@@ -39,3 +39,21 @@
     margin-right: .5rem;
     width: 1rem;
 }
+
+.filter_btn {
+    width: 70%;
+    margin: 20px 10px 5px;
+    padding: 9px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    background-color: #5856d6;
+    color: white;
+    /* font-family: monospace; */
+}
+
+.filter_btn:hover {
+    background-color: #7064e5;
+    cursor: pointer;
+}
