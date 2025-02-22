@@ -19,12 +19,6 @@ const CartPage = () => {
     }
   }, [cartItems]);
 
-  // const handlePurchase = () => {
-  //   alert(`Purchase Successful! ${grandTotal}`);
-  //   // onPurchase(); // Clear the cart or take any purchase-related actions
-  // };
-
-  // console.log("cartItems in CarPage: ", cartItems);
   return (
     <div className={styles.cartPage}>
       <h1 className={styles.heading}>My Cart</h1>

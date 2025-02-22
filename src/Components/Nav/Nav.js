@@ -13,11 +13,14 @@ import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { ThemeContext } from "../../Context/ThemeContex";
 
 const Nav = () => {
   // let [userDetails, setUserDetails] = useState(false);
   const { currentUser, currUserData, setCurrentUser } = useUser();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   console.log("Current User", currentUser);
   // console.log("User Details", userDetails);
@@ -47,7 +50,7 @@ const Nav = () => {
       <nav className={styles.navbar}>
         <div className={styles.navbar_container}>
           <Link to="/" className={styles.navbar_logo}>
-            Busy Buy
+            <h1>Busy Buy</h1>
           </Link>
           <ul className={styles.nav_menu}>
             <li className={styles.nav_item}>
@@ -150,6 +153,11 @@ const Nav = () => {
                 {/* */}
               </>
             )}
+            <li>
+              <button className={styles.nav_links} onClick={toggleTheme}>
+                {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+              </button>
+            </li>
           </ul>
         </div>
       </nav>

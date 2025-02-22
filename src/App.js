@@ -12,6 +12,7 @@ import { UserProvider } from "./Context/UserContext";
 import { CartProvider } from "./Context/CartContex";
 import OrdersPage from "./Components/Cart/Orders";
 import { CheckoutPage } from "./Components/Cart/CheckoutPage";
+import { ThemeProvider } from "./Context/ThemeContex";
 
 function App() {
   const router = createBrowserRouter([
@@ -26,11 +27,7 @@ function App() {
         },
         { path: "/signIn", element: <SignIn /> },
         { path: "/signUp", element: <SignUp /> },
-        {
-          path: "/userCart/:userId/myCart",
-          element: <CartPage />,
-          // element: <CartPage cartItems={cartItems} handleClear={handleClear} />,
-        },
+        { path: "/userCart/:userId/myCart", element: <CartPage /> },
         { path: "/checkout", element: <CheckoutPage /> },
         { path: "userOrders/:userId/orders", element: <OrdersPage /> },
       ],
@@ -40,11 +37,13 @@ function App() {
     <>
       <ToastContainer />
       <div className="App">
-        <UserProvider>
-          <CartProvider>
-            <RouterProvider router={router} />
-          </CartProvider>
-        </UserProvider>
+        <ThemeProvider>
+          <UserProvider>
+            <CartProvider>
+              <RouterProvider router={router} />
+            </CartProvider>
+          </UserProvider>
+        </ThemeProvider>
       </div>
     </>
   );

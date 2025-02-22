@@ -1,15 +1,93 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
+/* Light/Dark Theme Variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #7064e5;
+  --secondary-color: #a49af7;
+  --header-bg: #282c34;
+  --link-color: #61dafb;
+  --scrollbar-track: #f0f0f0;
+  --scrollbar-thumb: var(--secondary-color);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #7064e5;
+  --secondary-color: #a49af7;
+} */
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #483d8b;
+  --secondary-color: #a49af7;
+  --header-bg: #1e1e1e;
+  --link-color: #ffcc00;
+  --scrollbar-track: #2a2a2a;
+  --scrollbar-thumb: var(--primary-color);
+}
+
+/* [data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #483d8b;
+  --secondary-color: #a49af7;
+} */
+
+/* Apply Theme Globally */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Main App */
+.App {
+  text-align: center;
+}
+
+/* Header */
+.App-header {
+  background-color: var(--header-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--text-color);
+}
+
+/* Links */
+.App-link {
+  color: var(--link-color);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .App-header {
+    font-size: calc(8px + 2vmin);
+  }
 }

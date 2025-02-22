@@ -71,16 +71,16 @@ const CheckoutPage = () => {
                 <label htmlFor="number" className={styles.labels}>
                   Number
                 </label>
-                <select className={styles.country_code}>
+                {/* <select className={styles.country_code}>
                   <option selected>+1</option>
                   {countryData.map((country, index) => (
                     <option key={index}>{country.code}</option>
                   ))}
-                </select>
+                </select> */}
                 <input
                   type="tel"
                   placeholder="425 151 2318"
-                  style={{ paddingLeft: "77px", width: "136%" }}
+                  // style={{ , width: "136%" }}
                 />
               </div>
 

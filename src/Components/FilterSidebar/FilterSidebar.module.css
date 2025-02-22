@@ -1,5 +1,6 @@
 .filter_caintainer {
-    background: #f0f0fc;
+    /* background: #f0f0fc; */
+    background: var(--filter-bar-bg);
     border-radius: 10px;
     left: 0;
     padding: 1rem;
@@ -10,7 +11,7 @@
 }
 
 .filter_caintainer h2 {
-    color: #224957;
+    color: var(--primary-color);
     font-size: 1.25em;
     font-weight: 700;
 }

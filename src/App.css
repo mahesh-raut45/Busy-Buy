@@ -1,51 +1,71 @@
+/* Theme Variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #7064e5;
+  --secondary-color: #a49af7;
+  /* --secondary-bg-color: #f0f0fc; */
+  --header-bg: #282c34;
+  --filter-bar-bg: #f0f0fc;
+  --link-color: #757cea;
+  --scrollbar-track: #f0f0f0;
+  --scrollbar-thumb: var(--secondary-color);
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --secondary-bg-color: #1f1f1f;
+  --text-color: #ffffff;
+  --primary-color: #A5CEF0;
+  --secondary-color: #a49af7;
+  --filter-bar-bg: #1f1f1f;
+  --header-bg: #1e1e1e;
+  --link-color: #ffcc00;
+  --scrollbar-track: #2a2a2a;
+  --scrollbar-thumb: var(--primary-color);
+}
+
+/* Apply Theme */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* Header */
 .App-header {
-  background-color: #282c34;
+  background-color: var(--header-bg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text-color);
 }
 
+/* Links */
 .App-link {
-  color: #61dafb;
+  color: var(--link-color);
 }
 
-/* width */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  /* border-radius: 10px; */
+  background: var(--scrollbar-track);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #a49af7;
-  /* border-radius: 10px; */
+  background: var(--scrollbar-thumb);
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #7064e5;
+  background: var(--primary-color);
 }

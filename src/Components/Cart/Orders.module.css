@@ -1,13 +1,13 @@
 .container {
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-color);
     min-height: 100vh;
 }
 
 .heading {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #b197fc;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 20px;
     font-family: cursive;
@@ -15,7 +15,7 @@
 
 /* Order Card */
 .orderCard {
-    background: #ffffff;
+    background: var(--filter-bar-bg);
     border-radius: 10px;
     margin: 20px auto;
     padding: 15px;
@@ -29,12 +29,12 @@
     align-items: center;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 10px;
-    color: coral;
+    color: var(--secondary-color);
 }
 
 .orderDate {
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: var(--link-color);
 }
 
 /* Items Container */
