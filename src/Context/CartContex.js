@@ -1,11 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
-  deleteDoc,
   doc,
   getDoc,
   getDocs,
-  getFirestore,
   query,
   setDoc,
   updateDoc,
@@ -117,7 +115,8 @@ const CartProvider = ({ children }) => {
       }
 
       // find the prod present inside cart or not
-      const index = cartItems.findIndex((item) => item.id === prod.id);
+      const index =
+        cartItems && cartItems.findIndex((item) => item.id === prod.id);
       // prod.isInCart = true;
 
       const fetchProdId = products.findIndex((item) => item.id === prod.id);
@@ -129,7 +128,7 @@ const CartProvider = ({ children }) => {
         setCartItems([...cartItems, { ...prod, qty: 1 }]);
         // setIsInCart(true);
       } else {
-        cartItems[index].qty++;
+        cartItems && cartItems[index].qty++;
       }
     } else {
       //   alert("Please login first!");
@@ -222,9 +221,26 @@ const CartProvider = ({ children }) => {
 
         // push all the purchased item in userOrder
         userOrder.push(...purchasedItems);
-
         // update the order
         await updateDoc(userDocRef, { userOrder });
+
+        // clear the cart items.
+        const userCartDocRef = doc(db, "carts", currentUser.uid);
+        const userCartDocSnap = await getDoc(userCartDocRef);
+        console.log(userCartDocSnap.data().userCart);
+
+        // pass each product to handleClear(prod)
+        const userCart = userCartDocSnap.data().userCart;
+        // clearCartItems(currentUser.uid);
+        // userCart.map((prod) => {
+        //   handleClear(prod);
+
+        // });
+
+        userCart.length = 0;
+        // update the cart
+        const updatedCart = await updateDoc(userCartDocRef, { userCart });
+        setCartItems(updatedCart);
       } else {
         // if doc doesn't exists, create it
         await setDoc(userDocRef, { userOrder: purchasedItems });
@@ -238,16 +254,16 @@ const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCartItems = async (userId) => {
-    try {
-      const db = getFirestore();
-      const userCartDoc = doc(db, "carts", userId);
-      await deleteDoc(userCartDoc);
-      console.log(`Cart removed for user:  ${userId}`);
-    } catch (error) {
-      console.log("Error while removing cart for ", userId);
-    }
-  };
+  // const clearCartItems = async (userId) => {
+  //   try {
+  //     const db = getFirestore();
+  //     const userCartDoc = doc(db, "carts", userId);
+  //     await deleteDoc(userCartDoc);
+  //     console.log(`Cart removed for user:  ${userId}`);
+  //   } catch (error) {
+  //     console.log("Error while removing cart for ", userId);
+  //   }
+  // };
 
   return (
     <CartContext.Provider

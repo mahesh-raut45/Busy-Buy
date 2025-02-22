@@ -14,3 +14,35 @@
     position: absolute;
     right: 50%;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .prod_grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 2rem 5rem;
+        gap: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .prod_grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 1.5rem 2rem;
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .prod_grid {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 1rem;
+        gap: 1rem;
+    }
+
+    .loader {
+        position: static;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+}

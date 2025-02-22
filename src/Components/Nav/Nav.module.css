@@ -72,7 +72,7 @@
 
 button {
     border: none;
-    background: var(--bg-color);
+    background: var(--filter-bar-bg);
 }
 
 .icon_styles {
@@ -121,4 +121,139 @@ button {
 .cart_and_orders_icon {
     height: 20px;
     margin-right: 8px;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .navbar {
+        padding: 0 2em;
+    }
+
+    .nav_menu {
+        grid-template-columns: repeat(5, auto);
+        width: 100%;
+    }
+
+    .nav_links {
+        font-size: 16px;
+        padding: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 70px;
+        padding: 0 1.5em;
+    }
+
+    .navbar_container {
+        gap: 420px;
+    }
+
+    .nav_menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--secondary-bg-color);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav_menu.active {
+        display: flex;
+    }
+
+    .nav_item {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .nav_links {
+        width: 100%;
+        padding: 10px 15px;
+        display: block;
+        font-size: 18px;
+    }
+
+    .icon_styles {
+        height: 30px;
+        width: 30px;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger div {
+        width: 30px;
+        height: 4px;
+        background: var(--primary-color);
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* User Dropdown for Mobile */
+    .user {
+        position: relative;
+    }
+
+    .user:hover .cart_and_orders {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 150px;
+        background: var(--secondary-bg-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cart_and_orders li {
+        text-align: left;
+        padding: 8px;
+        transition: 0.3s;
+    }
+
+    .cart_and_orders li:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        height: 60px;
+        padding: 0 1em;
+    }
+
+    .navbar_container {
+        gap: 215px;
+    }
+
+    .navbar_logo h1 {
+        font-size: 15px;
+        width: 70px;
+    }
+
+    .nav_menu {
+        top: 60px;
+    }
+
+    .nav_links {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .icon_styles {
+        height: 28px;
+        width: 28px;
+    }
 }

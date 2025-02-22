@@ -58,3 +58,80 @@
     background-color: #7064e5;
     cursor: pointer;
 }
+
+.toggle_btn {
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+    visibility: hidden;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .filter_caintainer {
+        top: 20%;
+        width: 10rem;
+        padding: 0.8rem;
+    }
+
+    .filter_caintainer h2 {
+        font-size: 1.1em;
+    }
+
+    .price_range {
+        width: 100%;
+    }
+
+    .filter_btn {
+        width: 80%;
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .filter_caintainer {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        padding: 1.5rem;
+        text-align: left;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .filter_caintainer.active {
+        left: 0;
+    }
+
+    .category_container {
+        gap: 0.8rem;
+    }
+
+    .filter_btn {
+        width: 100%;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .filter_caintainer {
+        width: 150px;
+        padding: 1rem;
+    }
+
+    .toggle_btn {
+        visibility: visible;
+    }
+
+    .filter_caintainer h2 {
+        font-size: 1rem;
+    }
+
+    .filter_btn {
+        font-size: 14px;
+        padding: 7px;
+    }
+}

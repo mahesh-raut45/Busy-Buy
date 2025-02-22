@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./CheckoutPge.module.css";
 import { countryData } from "../../Data/CountryData/CountryData";
-import { Products } from "../../Data/ProductsData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTicket } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { useUser } from "../../Context/UserContext";
 import { useCart } from "../../Context/CartContex";
 
 const CheckoutPage = () => {
@@ -16,7 +13,7 @@ const CheckoutPage = () => {
   const shippingCharge = 60;
 
   useEffect(() => {
-    if (cartItems.length > 0) {
+    if (cartItems && cartItems.length > 0) {
       // setting discount for more than 2 products
       if (cartItems.length > 2) {
         setDiscount(100);
@@ -147,26 +144,28 @@ const CheckoutPage = () => {
             <h4 className={styles.small_heading}>Review your cart</h4>
             <div className={styles.cart_container}>
               {/* show cart items here */}
-              {cartItems.map((item, index) => (
-                <div className={styles.product_card} key={index}>
-                  <div className={styles.card_left}>
-                    <img src={item.src} alt="prod img" />
+              {cartItems &&
+                cartItems.length > 0 &&
+                cartItems.map((item, index) => (
+                  <div className={styles.product_card} key={index}>
+                    <div className={styles.card_left}>
+                      <img src={item.src} alt="prod img" />
+                    </div>
+                    <div className={styles.card_right}>
+                      <p>{item.name}</p>
+                      <p
+                        style={{
+                          fontSize: "small",
+                          color: "lightgrey",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {item.qty}
+                      </p>
+                      <p>₹{item.price * item.qty}</p>
+                    </div>
                   </div>
-                  <div className={styles.card_right}>
-                    <p>{item.name}</p>
-                    <p
-                      style={{
-                        fontSize: "small",
-                        color: "lightgrey",
-                        fontWeight: "600",
-                      }}
-                    >
-                      {item.qty}
-                    </p>
-                    <p>₹{item.price * item.qty}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
             <div className={styles.disc_code}>
               {/* disc icon */}

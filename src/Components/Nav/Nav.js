@@ -13,7 +13,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../../Context/ThemeContex";
 
 const Nav = () => {
@@ -21,6 +21,7 @@ const Nav = () => {
   const { currentUser, currUserData, setCurrentUser } = useUser();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   console.log("Current User", currentUser);
   // console.log("User Details", userDetails);
@@ -52,7 +53,16 @@ const Nav = () => {
           <Link to="/" className={styles.navbar_logo}>
             <h1>Busy Buy</h1>
           </Link>
-          <ul className={styles.nav_menu}>
+          {/* Hamburger Menu for Mobile */}
+          <div
+            className={styles.hamburger}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <ul className={`${styles.nav_menu} ${menuOpen ? styles.active : ""}`}>
             <li className={styles.nav_item}>
               <Link to="/" className={styles.nav_links}>
                 <span>

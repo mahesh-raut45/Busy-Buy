@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 const CartPage = () => {
   // console.log(cartItems);
   const [grandTotal, setGrandTotal] = useState(0);
-  const { cartItems, handleClear, handlePurchase } = useCart();
+  const { cartItems, handleClear } = useCart();
 
   // Calculate the grand total whenever the cartItems change
   useEffect(() => {
-    if (cartItems.length > 0) {
+    if (cartItems && cartItems.length > 0) {
       const total = cartItems.reduce((acc, item) => {
         console.log("acc: ", acc, " price: ", item.price, " qty: ", item.qty);
         return acc + item.price * item.qty;
@@ -22,7 +22,7 @@ const CartPage = () => {
   return (
     <div className={styles.cartPage}>
       <h1 className={styles.heading}>My Cart</h1>
-      {cartItems.length > 0 ? (
+      {cartItems && cartItems.length > 0 ? (
         <>
           <div className={styles.cartItems}>
             {cartItems.map((item, index) => (
@@ -56,7 +56,7 @@ const CartPage = () => {
           </div>
         </>
       ) : (
-        <p>Please add products in cart!</p>
+        <p className={styles.empty_cart}>Please add products in cart!</p>
       )}
     </div>
   );

@@ -237,3 +237,93 @@ input:focus,
     /* transform: scale(1.05); */
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .checkout_page {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 4%;
+    }
+
+    .left_container,
+    .right_container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .checkout_page {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .left_container,
+    .right_container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+
+    .small_heading {
+        font-size: 1.2rem;
+    }
+
+    .shipping_form {
+        gap: 15px;
+    }
+
+    .inputs input,
+    .country_name {
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .pay_btn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .cart_container {
+        max-height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .checkout_page {
+        padding: 10px;
+    }
+
+    .left_container,
+    .right_container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .heading {
+        font-size: 1.8rem;
+    }
+
+    .small_heading {
+        font-size: 1rem;
+    }
+
+    .inputs input,
+    .country_name {
+        height: 38px;
+        font-size: 0.85rem;
+    }
+
+    .pay_btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .cart_container {
+        max-height: 180px;
+    }
+}

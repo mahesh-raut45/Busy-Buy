@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./FilterSidebar.module.css";
 
 const FilterSidebar = ({ setRange, setCategories, categories }) => {
@@ -7,18 +7,7 @@ const FilterSidebar = ({ setRange, setCategories, categories }) => {
   const [womens, setWomens] = useState(false);
   const [jewelery, setJewelery] = useState(false);
   const [electronics, setElectronics] = useState(false);
-
-  //   set the range agter the value(range) is changed
-  // useEffect(() => {
-  // setRange(value);
-  // setCategories({
-  //   mens: mensRef.current.value,
-  //   womens: womensRef.current.value,
-  //   jewelery: jeweleryRef.current.value,
-  //   electronics: electronicsRef.current.value,
-  // });
-  // console.log("Mens: ", mens);
-  // }, [value]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +23,17 @@ const FilterSidebar = ({ setRange, setCategories, categories }) => {
 
   return (
     <>
-      <aside className={styles.filter_caintainer}>
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className={styles.toggle_btn}
+      >
+        {isSidebarOpen ? "Close Filters" : "Open Filters"}
+      </button>
+      <aside
+        className={`${styles.filter_caintainer} ${
+          isSidebarOpen ? styles.active : ""
+        }`}
+      >
         <h2>Filter</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="price"> Price: {value}</label>

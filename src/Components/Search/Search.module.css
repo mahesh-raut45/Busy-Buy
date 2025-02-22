@@ -17,3 +17,37 @@
     padding: 12px;
     width: 100%;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .form {
+        width: 40%;
+    }
+
+    .search_input {
+        font-size: 1.1em;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: 60%;
+    }
+
+    .search_input {
+        font-size: 1em;
+        padding: 9px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .form {
+        width: 80%;
+    }
+
+    .search_input {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
