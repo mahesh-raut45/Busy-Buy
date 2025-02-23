@@ -15,6 +15,7 @@ import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../Context/ThemeContex";
+import { Switch } from "../Switch/Switch";
 
 const Nav = () => {
   // let [userDetails, setUserDetails] = useState(false);
@@ -163,10 +164,11 @@ const Nav = () => {
                 {/* */}
               </>
             )}
-            <li>
-              <button className={styles.nav_links} onClick={toggleTheme}>
+            <li className={styles.nav_links}>
+              {/* <button className={styles.nav_links} onClick={toggleTheme}>
                 {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
-              </button>
+              </button> */}
+              <Switch />
             </li>
           </ul>
         </div>
