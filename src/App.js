@@ -13,8 +13,14 @@ import { CartProvider } from "./Context/CartContex";
 import OrdersPage from "./Components/Cart/Orders";
 import { CheckoutPage } from "./Components/Cart/CheckoutPage";
 import { ThemeProvider } from "./Context/ThemeContex";
+import { useEffect } from "react";
+import { uploadNewProductsToFirebase } from "./Data/ProductsData";
 
 function App() {
+  // useEffect(() => {
+  //   uploadNewProductsToFirebase();
+  // }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",
